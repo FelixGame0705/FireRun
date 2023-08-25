@@ -23,7 +23,7 @@ public enum WEAPON_TYPE
     DARTS
 }
 
-public enum ATTACK_DURATION
+public enum ATTACK_STAGE
 {
     START,
     DURATION,
