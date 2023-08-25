@@ -20,7 +20,6 @@ public class PlayerUpDownController : MonoBehaviour
     [SerializeField] private ContactFilter2D _contactFilter2D;
     [SerializeField] private LayerMask _layerAttack;
     [SerializeField] private GameObject _body;
-    [SerializeField] private WeaponBase[] _weapons;
 
     private Transform _nearestTransform;
     private void Start()
@@ -118,12 +117,12 @@ public class PlayerUpDownController : MonoBehaviour
         return distanceNearest;
     }
 
-    public WeaponSystem weaponSystem;
-    public bool isInRangeAttack = false;
+    public WeaponSystem WeaponSystem;
+    public bool IsInRangeAttack = false;
 
     public bool CheckInRangeAttack(int index)
     {    
-        if (weaponSystem.weapons[index].GetRangeWeapon() >= GetDistanceNearest())
+        if (WeaponSystem.GetWeapon(index).GetRangeWeapon() >= GetDistanceNearest())
             return true;
         return false;
     }
@@ -131,9 +130,9 @@ public class PlayerUpDownController : MonoBehaviour
 
     public void AttackEnemy()
     {
-        for(int i = 0; i < weaponSystem.weapons.Count; i++)
+        for(int i = 0; i < WeaponSystem.GetWeapons().Count; i++)
         {
-            weaponSystem.ExcuteAttack(FindEnemyNearest(), CheckInRangeAttack(i));
+            WeaponSystem.ExcuteAttack(FindEnemyNearest(), CheckInRangeAttack(i));
         }
     }
 }

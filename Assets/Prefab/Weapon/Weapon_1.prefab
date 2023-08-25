@@ -177,18 +177,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d859d456025193a4b9094b42e9c4b096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider2D: {fileID: 7679473013818637703}
-  weaponConfig: {fileID: 11400000, guid: 4f81ae50f12951543a6ba6d831ca567a, type: 2}
-  targetAttack: {fileID: 0}
-  _parent: {fileID: 0}
-  animator: {fileID: 8155274126646536261}
-  model: {fileID: 9054654333709436468}
-  body: {fileID: 1238433522031880517}
-  attackDuration: 0
-  isAttack: 0
-  isStates: 01000000
-  rotateDirectionX: 1
-  rotateDirectionY: 1
+  ColliderWeapon: {fileID: 7679473013818637703}
+  WeaponConfigSetting: {fileID: 11400000, guid: 4f81ae50f12951543a6ba6d831ca567a, type: 2}
+  TargetAttack: {fileID: 0}
+  Parent: {fileID: 0}
+  WeaponAnimator: {fileID: 8155274126646536261}
+  Model: {fileID: 9054654333709436468}
+  Body: {fileID: 1238433522031880517}
+  PlayerAttackStage: 0
+  RotateDirectionX: 1
+  RotateDirectionY: 1
 --- !u!1 &9054654333709436468
 GameObject:
   m_ObjectHideFlags: 0

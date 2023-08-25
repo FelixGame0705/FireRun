@@ -29,7 +29,7 @@ public class EnemySetting : ScriptableObject
         set { speedAttack = value; }
     }
 
-    public TYPE_ATTACK TypeAttack
+    public ATTACK_TYPE TypeAttack
     {
         get { return typeAttack; }
         set { typeAttack = value; }
@@ -39,5 +39,5 @@ public class EnemySetting : ScriptableObject
     [SerializeField] private float moveSpeed;
     [SerializeField] private float damageAttack;
     [SerializeField] private float speedAttack;
-    [SerializeField] private TYPE_ATTACK typeAttack;
+    [SerializeField] private ATTACK_TYPE typeAttack;
 }

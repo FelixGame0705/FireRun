@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class WeaponSystem : MonoBehaviour
 {
-    public List<WeaponBase> weapons;
+    [SerializeField] private List<WeaponBase> weapons;
 
     public void ExcuteAttack(Transform target, bool isCanAttack)
     {
@@ -12,10 +13,20 @@ public class WeaponSystem : MonoBehaviour
         {
             Debug.Log(weapons[i].CanPerformAttack());
             weapons[i].SetTargetForAttack(target);
-            if ((isCanAttack && weapons[i].CanPerformAttackState()) || weapons[i].PlayerAttackStage != ATTACK_STAGE.START)
+            if ((isCanAttack && weapons[i].CanPerformAttackState()) || weapons[i].CheckCurrentStateActive(ATTACK_STAGE.START) == false)
             {
                 weapons[i].AttackMachanism(target);
             }
         }
+    }
+
+    public List<WeaponBase> GetWeapons()
+    {
+        return weapons;
+    }
+
+    public WeaponBase GetWeapon(int index)
+    {
+        return weapons[index];
     }
 }

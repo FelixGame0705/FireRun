@@ -1,6 +1,4 @@
-using DG.Tweening;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class WeaponBase : MonoBehaviour
 {
@@ -20,16 +18,17 @@ public class WeaponBase : MonoBehaviour
     {
         Parent = transform.parent;
         WeaponAnimator.runtimeAnimatorController = WeaponConfigSetting.AnimatorWeapon;
+        IsStates[0] = true;
     }
 
     // Update is called once per frame
     protected void Update()
     {
-        if (GetCurrentStateActive(ATTACK_STAGE.DURATION) != true)
+        if (CheckCurrentStateActive(ATTACK_STAGE.DURATION) != true)
         {
             Rotate();
         }
-        if (IsStates[(int)ATTACK_STAGE.START])
+        if (CheckCurrentStateActive(ATTACK_STAGE.START)) 
         {
             Debug.Log(RotateDirectionY);
             Flip();
@@ -107,8 +106,8 @@ public class WeaponBase : MonoBehaviour
         return false;
     }
 
-    virtual public bool GetCurrentStateActive(ATTACK_STAGE attackDuration)
+    virtual public bool CheckCurrentStateActive(ATTACK_STAGE attackStage)
     {
-        return this.PlayerAttackStage == attackDuration;
+        return this.PlayerAttackStage == attackStage;
     }
 }

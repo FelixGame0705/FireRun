@@ -88,11 +88,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StateLife: 0
-  m_CapsuleCollider: {fileID: 70576461785968608}
-  m_CircleCollider: {fileID: 5817665188209010940}
-  m_Animator: {fileID: 95910407471766630}
-  enemiesCollider: []
-  contactFilter2D:
+  CapsuleColliderPlayer: {fileID: 70576461785968608}
+  CircleColliderPlayer: {fileID: 5817665188209010940}
+  AnimatorPlayer: {fileID: 95910407471766630}
+  _enemiesCollider: []
+  _contactFilter2D:
     useTriggers: 0
     useLayerMask: 1
     useDepth: 0
@@ -106,15 +106,14 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  layerAttack:
+  _layerAttack:
     serializedVersion: 2
     m_Bits: 64
-  body: {fileID: 1448561438037956}
-  weapons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _body: {fileID: 1931383371771900}
+  _weapons:
+  - {fileID: 1375217305383887445}
+  - {fileID: 6349577837763108240}
+  - {fileID: 2087894443408514152}
   weaponSystem: {fileID: 2591348863065594170}
   isInRangeAttack: 0
 --- !u!1 &1303578656667868

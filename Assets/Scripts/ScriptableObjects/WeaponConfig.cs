@@ -40,7 +40,7 @@ public class WeaponConfig : ScriptableObject
         set { speedAttack = value; }
     }
 
-    public List<TYPE_DAMAGE> TypeDamage
+    public List<DAMAGE_TYPE> TypeDamage
     {
         get { return typeDamage; }
         set { typeDamage = value; }
@@ -66,7 +66,7 @@ public class WeaponConfig : ScriptableObject
     [Tooltip("Speed attack")]
     [SerializeField] private float speedAttack;
     [Tooltip("List type damage for attacking")]
-    [SerializeField] private List<TYPE_DAMAGE> typeDamage;
+    [SerializeField] private List<DAMAGE_TYPE> typeDamage;
     [Tooltip("Animation of weapon, base on weapon")]
     [SerializeField] private RuntimeAnimatorController animatorWeapon;
     [Tooltip("Speed move to target")]

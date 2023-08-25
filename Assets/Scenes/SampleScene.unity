@@ -258,6 +258,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6261521994952431908, guid: 15f5f6fa95464cf4fa7b37a7a9da15f6, type: 3}
+      propertyPath: CircleColliderPlayer
+      value: 
+      objectReference: {fileID: 1930249538}
+    - target: {fileID: 6261521994952431908, guid: 15f5f6fa95464cf4fa7b37a7a9da15f6, type: 3}
+      propertyPath: CapsuleColliderPlayer
+      value: 
+      objectReference: {fileID: 511932415}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15f5f6fa95464cf4fa7b37a7a9da15f6, type: 3}
 --- !u!1001 &133736170
@@ -328,6 +336,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d859d456025193a4b9094b42e9c4b096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!70 &511932415 stripped
+CapsuleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 70576461785968608, guid: 15f5f6fa95464cf4fa7b37a7a9da15f6, type: 3}
+  m_PrefabInstance: {fileID: 77928022}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -6744,6 +6757,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7da0946a09ad304ca3449750e7fc6da, type: 3}
+--- !u!58 &1930249538 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 5817665188209010940, guid: 15f5f6fa95464cf4fa7b37a7a9da15f6, type: 3}
+  m_PrefabInstance: {fileID: 77928022}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2065236489 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2087894443408514152, guid: 15f5f6fa95464cf4fa7b37a7a9da15f6, type: 3}
@@ -6755,3 +6773,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d859d456025193a4b9094b42e9c4b096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2146013217
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2146013218}
+  m_Layer: 0
+  m_Name: GamePlayController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2146013218
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146013217}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.0476758, y: 0.1820355, z: 0.0021681502}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

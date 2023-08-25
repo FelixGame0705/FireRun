@@ -6,7 +6,7 @@ public class ConstantData
 {
 
 }
-public enum TYPE_ATTACK
+public enum ATTACK_TYPE
 {
     MELEE,
     SHOOTING
@@ -58,11 +58,16 @@ public enum STATE_OF_GAME
     NEXT_LEVEL
 }
 
-public enum TYPE_DAMAGE
+public enum DAMAGE_TYPE
 {
     FIRE,
     POISON,
     PHYSIC,
     MAD,
     ICE
+}
+
+public enum ENEMY_TYPE
+{
+    
 }
