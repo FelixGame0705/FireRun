@@ -4,28 +4,28 @@ using UnityEngine;
 public class PlayerUpDownController : MonoBehaviour
 {
     public STATE_OF_CHARACTER StateLife;
-    protected float m_MoveX;
-    protected float m_MoveY;
+    protected float MoveX;
+    protected float MoveY;
     
     protected float MoveSpeed = 6f;
     protected float MaxHealth;
     protected float HealingRate;
     protected float Acceleration = 1.3f;
 
-    protected Rigidbody2D m_Rigidbody;
-    [SerializeField] protected CapsuleCollider2D m_CapsuleCollider;
-    [SerializeField] protected CircleCollider2D m_CircleCollider;
-    [SerializeField] protected Animator m_Animator;
-    [SerializeField] List<Collider2D> enemiesCollider;
-    [SerializeField] ContactFilter2D contactFilter2D;
-    [SerializeField] LayerMask layerAttack;
-    [SerializeField] GameObject body;
-    [SerializeField] private WeaponBase[] weapons;
+    protected Rigidbody2D RigidbodyPlayer;
+    [SerializeField] protected CapsuleCollider2D CapsuleColliderPlayer;
+    [SerializeField] protected CircleCollider2D CircleColliderPlayer;
+    [SerializeField] protected Animator AnimatorPlayer;
+    [SerializeField] private List<Collider2D> _enemiesCollider;
+    [SerializeField] private ContactFilter2D _contactFilter2D;
+    [SerializeField] private LayerMask _layerAttack;
+    [SerializeField] private GameObject _body;
+    [SerializeField] private WeaponBase[] _weapons;
 
-    Transform _nearestTransform;
+    private Transform _nearestTransform;
     private void Start()
     {
-        contactFilter2D.SetLayerMask(layerAttack);
+        _contactFilter2D.SetLayerMask(_layerAttack);
         _nearestTransform = transform;
     }
     protected void Update()
@@ -37,53 +37,53 @@ public class PlayerUpDownController : MonoBehaviour
 
     public void CheckInput()
     {
-        m_MoveX = Input.GetAxis("Horizontal") * Acceleration;
-        m_MoveY = Mathf.Min(Input.GetAxis("Vertical") * Acceleration, 1);
+        MoveX = Input.GetAxis("Horizontal") * Acceleration;
+        MoveY = Mathf.Min(Input.GetAxis("Vertical") * Acceleration, 1);
 
-        if(m_MoveX == 0 && m_MoveY == 0)
+        if(MoveX == 0 && MoveY == 0)
         {
-            m_Animator.Play("Idle");
+            AnimatorPlayer.Play("Idle");
         }
         else
         {
-            m_Animator.Play("Run");
+            AnimatorPlayer.Play("Run");
         }
 
         if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(Vector2.up * MoveSpeed * m_MoveY * Time.deltaTime);
+            transform.Translate(Vector2.up * MoveSpeed * MoveY * Time.deltaTime);
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            transform.Translate(Vector2.up * MoveSpeed * m_MoveY * Time.deltaTime);
+            transform.Translate(Vector2.up * MoveSpeed * MoveY * Time.deltaTime);
         }
 
         if (Input.GetKey(KeyCode.D))
         {
             Flip(true);
-            transform.Translate(Vector2.right * MoveSpeed * m_MoveX * Time.deltaTime);
+            transform.Translate(Vector2.right * MoveSpeed * MoveX * Time.deltaTime);
         }
         else if (Input.GetKey(KeyCode.A))
         {
             Flip(false);
-            transform.Translate(Vector2.right * MoveSpeed * m_MoveX * Time.deltaTime);
+            transform.Translate(Vector2.right * MoveSpeed * MoveX * Time.deltaTime);
         }
     }
 
     private void Flip(bool isFlip)
     {
-        body.transform.localScale = new Vector3(isFlip ? -1 : 1, 1, 1);
+        _body.transform.localScale = new Vector3(isFlip ? -1 : 1, 1, 1);
     }
 
     private void FindEnemy()
     {
-        m_CircleCollider.OverlapCollider(contactFilter2D, enemiesCollider);
+        CircleColliderPlayer.OverlapCollider(_contactFilter2D, _enemiesCollider);
     }
 
     public List<GameObject> GetEnemies()
     {
         List<GameObject> enemies = new List<GameObject>();
-        foreach(Collider2D e in enemiesCollider)
+        foreach(Collider2D e in _enemiesCollider)
         {
             enemies.Add(e.gameObject);
         }
@@ -92,7 +92,7 @@ public class PlayerUpDownController : MonoBehaviour
 
     public Transform FindEnemyNearest()
     {
-        float distanceNearest = m_CircleCollider.radius;
+        float distanceNearest = CircleColliderPlayer.radius;
         foreach (GameObject e in GetEnemies())
         {
             if(distanceNearest > Vector2.Distance(transform.position, e.transform.position))
@@ -106,7 +106,7 @@ public class PlayerUpDownController : MonoBehaviour
 
     public float GetDistanceNearest()
     {
-        float distanceNearest = m_CircleCollider.radius;
+        float distanceNearest = CircleColliderPlayer.radius;
         foreach (GameObject e in GetEnemies())
         {
             if (distanceNearest > Vector2.Distance(transform.position, e.transform.position))

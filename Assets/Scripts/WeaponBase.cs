@@ -4,22 +4,22 @@ using static UnityEngine.GraphicsBuffer;
 
 public class WeaponBase : MonoBehaviour
 {
-    [SerializeField] protected Collider2D collider2D;
-    [SerializeField] protected WeaponConfig weaponConfig;
-    [SerializeField] protected Transform targetAttack;
-    [SerializeField] protected Transform _parent;
-    [SerializeField] protected Animator animator;
-    [SerializeField] protected GameObject model;
-    [SerializeField] protected GameObject body;
+    [SerializeField] protected Collider2D ColliderWeapon;
+    [SerializeField] protected WeaponConfig WeaponConfigSetting;
+    [SerializeField] protected Transform TargetAttack;
+    [SerializeField] protected Transform Parent;
+    [SerializeField] protected Animator WeaponAnimator;
+    [SerializeField] protected GameObject Model;
+    [SerializeField] protected GameObject Body;
 
-    public ATTACK_DURATION attackDuration;
+    public ATTACK_DURATION AttackDuration;
     public bool[] isStates = new bool[4];
 
     // Start is called before the first frame update
     void Start()
     {
-        _parent = transform.parent;
-        animator.runtimeAnimatorController = weaponConfig.AnimatorWeapon;
+        Parent = transform.parent;
+        WeaponAnimator.runtimeAnimatorController = WeaponConfigSetting.AnimatorWeapon;
     }
 
     // Update is called once per frame
@@ -46,47 +46,47 @@ public class WeaponBase : MonoBehaviour
     public void Rotate()
     {
         if (CheckNullTarget()) return;
-        Vector3 direction = targetAttack.position - transform.position;
+        Vector3 direction = TargetAttack.position - transform.position;
         direction.z = 0;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         if (rotateDirectionX > 0) angle += 180f;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, weaponConfig.AngularVelocityReturn * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, WeaponConfigSetting.AngularVelocityReturn * Time.deltaTime);
     }
 
     public void CheckDirectionRotate()
     {
-        rotateDirectionX = transform.position.x > targetAttack.position.x ? 1 : -1;
-        rotateDirectionY = transform.position.y > targetAttack.position.y ? 1 : -1;
+        rotateDirectionX = transform.position.x > TargetAttack.position.x ? 1 : -1;
+        rotateDirectionY = transform.position.y > TargetAttack.position.y ? 1 : -1;
     }
 
     public void Flip()
     {
         if (CheckNullTarget()) return;
-        model.transform.localScale = transform.position.x > targetAttack.position.x ? new Vector3(-1, 1, 1) : new Vector3(1, 1, 1);
+        Model.transform.localScale = transform.position.x > TargetAttack.position.x ? new Vector3(-1, 1, 1) : new Vector3(1, 1, 1);
         CheckDirectionRotate();
     }
     #endregion
 
     public bool CheckNullTarget()
     {
-        if (targetAttack == null) return true;
+        if (TargetAttack == null) return true;
         return false;
     }
 
     public float GetRangeWeapon()
     {
-        return weaponConfig.RangeEnemyAttack;
+        return WeaponConfigSetting.RangeEnemyAttack;
     }
 
     public void SetTargetForAttack(Transform target)
     {
-        this.targetAttack = target;
+        this.TargetAttack = target;
     }
 
     virtual public bool CanPerformAttack()
     {
-        return !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack");
+        return !WeaponAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack");
     }
 
     virtual public void AttackMachanism(Transform target)
@@ -106,6 +106,6 @@ public class WeaponBase : MonoBehaviour
 
     virtual public bool GetCurrentStateActive(ATTACK_DURATION attackDuration)
     {
-        return this.attackDuration == attackDuration;
+        return this.AttackDuration == attackDuration;
     }
 }
