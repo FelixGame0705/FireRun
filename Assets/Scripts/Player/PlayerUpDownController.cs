@@ -17,11 +17,13 @@ public class PlayerUpDownController : MonoBehaviour
     [SerializeField] protected CircleCollider2D CircleColliderPlayer;
     [SerializeField] protected Animator AnimatorPlayer;
     [SerializeField] private List<Collider2D> _enemiesCollider;
+    [SerializeField] private List<Object> _enemies = new List<Object>();
     [SerializeField] private ContactFilter2D _contactFilter2D;
     [SerializeField] private LayerMask _layerAttack;
     [SerializeField] private GameObject _body;
 
     private Transform _nearestTransform;
+    private float _nearestDistance;
     private void Start()
     {
         _contactFilter2D.SetLayerMask(_layerAttack);
@@ -89,15 +91,15 @@ public class PlayerUpDownController : MonoBehaviour
         return enemies;
     }
 
-    public Transform FindEnemyNearest()
+    public Transform FindNearestEnemy()
     {
-        float distanceNearest = CircleColliderPlayer.radius;
+        _nearestDistance = CircleColliderPlayer.radius;
         foreach (GameObject e in GetEnemies())
         {
-            if(distanceNearest > Vector2.Distance(transform.position, e.transform.position))
+            if(_nearestDistance > Vector2.Distance(transform.position, e.transform.position))
             {
                 _nearestTransform = e.transform;
-                distanceNearest = Vector2.Distance(transform.position, e.transform.position);
+                _nearestDistance = Vector2.Distance(transform.position, e.transform.position);
             }
         }
         return _nearestTransform;
@@ -105,16 +107,11 @@ public class PlayerUpDownController : MonoBehaviour
 
     public float GetDistanceNearest()
     {
-        float distanceNearest = CircleColliderPlayer.radius;
-        foreach (GameObject e in GetEnemies())
+        if(_nearestTransform == null)
         {
-            if (distanceNearest > Vector2.Distance(transform.position, e.transform.position))
-            {
-                _nearestTransform = e.transform;
-                distanceNearest = Vector2.Distance(transform.position, e.transform.position);
-            }
+            FindNearestEnemy();
         }
-        return distanceNearest;
+        return _nearestDistance;
     }
 
     public WeaponSystem WeaponSystem;
@@ -132,7 +129,7 @@ public class PlayerUpDownController : MonoBehaviour
     {
         for(int i = 0; i < WeaponSystem.GetWeapons().Count; i++)
         {
-            WeaponSystem.ExcuteAttack(FindEnemyNearest(), CheckInRangeAttack(i));
+            WeaponSystem.ExcuteAttack(FindNearestEnemy(), CheckInRangeAttack(i));
         }
     }
 }

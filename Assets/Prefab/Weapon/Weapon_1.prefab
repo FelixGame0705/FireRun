@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3581641967282304086}
   - component: {fileID: 7679473013818637703}
   - component: {fileID: 8155274126646536261}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1238433522031880517}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -142,7 +142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1928643264216797621}
   - component: {fileID: 7571915749086627202}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Weapon_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7321803176911645106}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

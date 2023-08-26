@@ -23,6 +23,17 @@ public class BladeController : WeaponBase
         return TargetAttack.GetComponent<BoxCollider2D>().size.y/2;
     }
 
+    private void DealWithDamageToEnemy()
+    {
+
+    }
+
+    private void DamageEnemy()
+    {
+        Enemy enemy = TargetAttack.GetComponent<Enemy>();
+        enemy.MinusCurrentHealth(1);
+        if (enemy.GetCurrentHealth() < 0) enemy.gameObject.SetActive(false);
+    }
 
     override public bool CanPerformAttackState()
     {
@@ -77,6 +88,7 @@ public class BladeController : WeaponBase
                 {
                     WeaponAnimator.enabled = true;
                     AnimateAttack();
+                    DamageEnemy();
                     base.PlayerAttackStage = ATTACK_STAGE.FINISHED;
                 }
                 break;

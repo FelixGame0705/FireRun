@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 70576461785968608}
   - component: {fileID: 1804918196}
   - component: {fileID: 6261521994952431908}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player_SwordManUpDown
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -51,8 +51,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.003753662, y: 0.043790817}
-  m_Size: {x: 0.32198334, y: 0.99671555}
+  m_Offset: {x: 0.036691725, y: 0.24312901}
+  m_Size: {x: 0.6339911, y: 1.395392}
   m_Direction: 0
 --- !u!50 &1804918196
 Rigidbody2D:
@@ -110,12 +110,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _body: {fileID: 1931383371771900}
-  _weapons:
-  - {fileID: 1375217305383887445}
-  - {fileID: 6349577837763108240}
-  - {fileID: 2087894443408514152}
-  weaponSystem: {fileID: 2591348863065594170}
-  isInRangeAttack: 0
+  WeaponSystem: {fileID: 2591348863065594170}
+  IsInRangeAttack: 0
 --- !u!1 &1303578656667868
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +461,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4921859143333186}
   - component: {fileID: 61660644251133108}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GroundSensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -494,7 +490,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1765512518946760}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -792,7 +788,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245510556604817750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.224, y: 0.316, z: 0}
+  m_LocalPosition: {x: 0.71, y: 0.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -824,7 +820,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3501071564750290582}
   m_LocalRotation: {x: -0, y: -0, z: 0.000000029802322, w: 1}
-  m_LocalPosition: {x: -0.661, y: 0.591, z: 0}
+  m_LocalPosition: {x: -0.422, y: 0.388, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -936,7 +932,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8115894404922733970}
-  m_LocalRotation: {x: -0, y: -0, z: 0.34527177, w: 0.9385028}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.10100174, y: -0.06552577, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -947,7 +943,7 @@ Transform:
   - {fileID: 3316630696126286735}
   m_Father: {fileID: 4186536141794408}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 40.397003}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2591348863065594170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1002,6 +998,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3316630696126286735}
     m_Modifications:
+    - target: {fileID: 1238433522031880517, guid: ba9f21c9e0dc6b241b1a91000c6c0cf0, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1928643264216797621, guid: ba9f21c9e0dc6b241b1a91000c6c0cf0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1050,6 +1050,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon_1
       objectReference: {fileID: 0}
+    - target: {fileID: 4561262128715566301, guid: ba9f21c9e0dc6b241b1a91000c6c0cf0, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054654333709436468, guid: ba9f21c9e0dc6b241b1a91000c6c0cf0, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba9f21c9e0dc6b241b1a91000c6c0cf0, type: 3}
 --- !u!4 &3155062857997552039 stripped
@@ -1075,6 +1083,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5704127464155147792}
     m_Modifications:
+    - target: {fileID: 1238433522031880517, guid: ba9f21c9e0dc6b241b1a91000c6c0cf0, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1928643264216797621, guid: ba9f21c9e0dc6b241b1a91000c6c0cf0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1123,6 +1135,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon_1
       objectReference: {fileID: 0}
+    - target: {fileID: 4561262128715566301, guid: ba9f21c9e0dc6b241b1a91000c6c0cf0, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054654333709436468, guid: ba9f21c9e0dc6b241b1a91000c6c0cf0, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba9f21c9e0dc6b241b1a91000c6c0cf0, type: 3}
 --- !u!114 &2087894443408514152 stripped
@@ -1148,6 +1168,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1761042041339618427}
     m_Modifications:
+    - target: {fileID: 1238433522031880517, guid: ba9f21c9e0dc6b241b1a91000c6c0cf0, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1928643264216797621, guid: ba9f21c9e0dc6b241b1a91000c6c0cf0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1195,6 +1219,14 @@ PrefabInstance:
     - target: {fileID: 4561262128715566301, guid: ba9f21c9e0dc6b241b1a91000c6c0cf0, type: 3}
       propertyPath: m_Name
       value: Weapon_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561262128715566301, guid: ba9f21c9e0dc6b241b1a91000c6c0cf0, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054654333709436468, guid: ba9f21c9e0dc6b241b1a91000c6c0cf0, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba9f21c9e0dc6b241b1a91000c6c0cf0, type: 3}
