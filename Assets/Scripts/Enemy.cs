@@ -10,19 +10,15 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject _targetPlayer;
     [SerializeField] private Animator _animator;
     [SerializeField] private int _currentHealth;
-    public ObjectPool ob;
-    private float _maxHealth;
+    private int _maxHealth;
     private Transform _playerUpDownController;
 
-    private ATTACK_STAGE _attackStage;
+    private ATTACK_STAGE _attackStage = ATTACK_STAGE.START;
     // Start is called before the first frame update
     void Start()
     {
-        _currentHealth = _enemyConfig.MaxHealth;
-        for (int i = 0; i < 14; i++)
-            ob.GetObjectFromPool();
-        var hp = FindObjectOfType<PlayerUpDownController>();
-        _targetPlayer = hp.gameObject;
+        _maxHealth = _enemyConfig.MaxHealth;
+        _currentHealth = _maxHealth;
     }
 
     // Update is called once per frame
@@ -83,9 +79,20 @@ public class Enemy : MonoBehaviour
         _currentHealth -= healthDamage;
     }
 
+    public void TakeDamage(int damage)
+    {
+        _currentHealth -= damage;
+        if (_currentHealth < 0) GamePlayController.Instance.GetEnemiesPool().ReturnObjectToPool(gameObject);
+    }
+
     public int GetCurrentHealth()
     {
         return _currentHealth;
+    }
+
+    public void SetTargetPlayer(GameObject target)
+    {
+        _targetPlayer = target;
     }
 
     protected virtual void AttackMechanism()
@@ -94,6 +101,7 @@ public class Enemy : MonoBehaviour
         {
             case ATTACK_STAGE.START:
                 //MoveToPlayer();
+                if(CanPerformAttack())
                 if(Vector2.Distance(transform.position, _targetPlayer.transform.position) < 1f)
                 {
                     _attackStage = ATTACK_STAGE.DURATION;

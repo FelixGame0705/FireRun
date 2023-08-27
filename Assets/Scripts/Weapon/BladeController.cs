@@ -28,24 +28,11 @@ public class BladeController : WeaponBase
 
     }
 
-    private void DamageEnemy()
-    {
-        Enemy enemy = TargetAttack.GetComponent<Enemy>();
-        enemy.MinusCurrentHealth(1);
-        if (enemy.GetCurrentHealth() < 0) enemy.gameObject.SetActive(false);
-    }
-
     override public bool CanPerformAttackState()
     {
         if (CheckIsAttack(PlayerAttackStage))
             return true;
         return false;
-    }
-
-    override public void SetStateAttacking(ATTACK_STAGE currentState, ATTACK_STAGE stateContinue)
-    {
-        IsStates[(int)currentState] = false;
-        IsStates[(int)stateContinue] = true;
     }
 
     private IEnumerator CheckFinishAttack()
@@ -86,9 +73,11 @@ public class BladeController : WeaponBase
             case ATTACK_STAGE.DURATION:
                 if (CanPerformAttackState())
                 {
+                    Debug.Log("Attack duration");
                     WeaponAnimator.enabled = true;
                     AnimateAttack();
-                    DamageEnemy();
+                    TargetAttack.GetComponent<Enemy>().TakeDamage(1);
+                    //DamageEnemy();
                     base.PlayerAttackStage = ATTACK_STAGE.FINISHED;
                 }
                 break;

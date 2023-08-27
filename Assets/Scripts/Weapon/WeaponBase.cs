@@ -24,7 +24,7 @@ public class WeaponBase : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        if (CheckCurrentStateActive(ATTACK_STAGE.DURATION) != true)
+        if (IsStates[(int)ATTACK_STAGE.DURATION] != true)
         {
             Rotate();
         }
@@ -98,7 +98,8 @@ public class WeaponBase : MonoBehaviour
 
     virtual public void SetStateAttacking(ATTACK_STAGE currentState, ATTACK_STAGE stateContinue)
     {
-
+        IsStates[(int)currentState] = false;
+        IsStates[(int)stateContinue] = true;
     }
 
     virtual public bool CanPerformAttackState()

@@ -12,7 +12,7 @@ public class ObjectPool : MonoBehaviour
     {
         for (int i = 0; i < initialPoolSize; i++)
         {
-            GameObject obj = Instantiate(objectPrefab);
+            GameObject obj = Instantiate(objectPrefab, new Vector3(Random.Range(-5,5), Random.Range(-5,5),0), Quaternion.identity);
             obj.SetActive(false);
             objectPool.Enqueue(obj);
         }
