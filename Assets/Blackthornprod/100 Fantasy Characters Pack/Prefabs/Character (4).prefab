@@ -492,6 +492,8 @@ MonoBehaviour:
   _targetPlayer: {fileID: 0}
   _animator: {fileID: 8251177030782226018}
   _currentHealth: 0
+  _spriteRenderer: {fileID: 8845373744262729947}
+  isHurt: 1
 --- !u!61 &340673803960578152
 BoxCollider2D:
   m_ObjectHideFlags: 0

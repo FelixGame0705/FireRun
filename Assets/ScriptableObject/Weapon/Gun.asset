@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Gun
   m_EditorClassIdentifier: 
   rangeFindEnemyAttack: 10
-  rangAttack: 10
+  rangAttack: 30
   damageAttack:
   - 0
   - 0
   - 0
-  speedAttack: 3
+  speedAttack: 0.2
   typeDamage: 
-  animatorWeapon: {fileID: 9100000, guid: fda438b0c5d04d2459f102c92f0d6252, type: 2}
+  animatorWeapon: {fileID: 9100000, guid: 15f89491d477fb344a91f4e06e1eeae3, type: 2}
   speedMoveToTarget: 0.2
   speedMoveReturn: 0.5
   angularVelocityReturn: 5

@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class BladeController : WeaponBase
 {
+    protected override void Update()
+    {
+        base.Update();
+        if (TargetAttack.gameObject.active == false)
+        {
+            transform.DOLocalMove(Vector3.zero, WeaponConfigSetting.SpeedMoveToReturn);
+        }
+    }
     private void MoveToEnemy(Transform target)
     {
         Body.transform.DOLocalMove(Vector3.zero, 1f);
         Vector3 newTarget = target.position + new Vector3(GetHalfSizeXColliderEnemy() * RotateDirectionX, GetHalfSizeYColliderEnemy() * RotateDirectionY, 0f);
         float distance = Vector3.Distance(newTarget, transform.position);
-        transform.DOMove(newTarget, WeaponConfigSetting.SpeedMoveToTarget * distance);
-        SetStateAttacking(ATTACK_STAGE.START, ATTACK_STAGE.DURATION);
+        transform.DOMove(newTarget, distance / WeaponConfigSetting.SpeedMoveToTarget).OnComplete(()=>SetStateAttacking(ATTACK_STAGE.DURATION, true));
+        SetStateAttacking(ATTACK_STAGE.START, false);
     }
 
     public float GetHalfSizeXColliderEnemy()
@@ -37,6 +45,7 @@ public class BladeController : WeaponBase
 
     private IEnumerator CheckFinishAttack()
     {
+        WeaponAnimator.speed = 2f;
         WeaponAnimator.Play("Attack");
         yield return new WaitUntil(() => WeaponAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack"));
         SetStateAttacking(ATTACK_STAGE.DURATION, ATTACK_STAGE.FINISHED);
@@ -59,16 +68,21 @@ public class BladeController : WeaponBase
             case ATTACK_STAGE.START:
                 if (CanPerformAttackState())
                 {
-
-                    SetTargetForAttack(target);
-                    Flip();
-                    if (!CheckNullTarget())
+                    if (Vector2.Distance(transform.position, target.position) <= WeaponConfigSetting.RangeEnemyAttack)
                     {
-                        WeaponAnimator.enabled = false;
-                        MoveToEnemy(TargetAttack);
-                        base.PlayerAttackStage = ATTACK_STAGE.DURATION;
+
+                        SetTargetForAttack(target);
+                        Flip();
+                        if (!CheckNullTarget())
+                        {
+                            WeaponAnimator.enabled = false;
+                            //SetStateAttacking(ATTACK_STAGE.START, ATTACK_STAGE.DURATION);
+                            MoveToEnemy(TargetAttack);
+                            base.PlayerAttackStage = ATTACK_STAGE.DURATION;
+                        }
                     }
                 }
+                
                 break;
             case ATTACK_STAGE.DURATION:
                 if (CanPerformAttackState())

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4194611680560593146}
   - component: {fileID: 1438559494464498655}
-  - component: {fileID: 3724010686608601031}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -85,22 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &3724010686608601031
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2510839983510138687}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.011355491, y: 0.007272392}
-  m_Size: {x: 0.6627446, y: 0.28544146}
-  m_Direction: 1
 --- !u!1 &6681698131001076245
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6404633820606565401}
   - component: {fileID: -4029589105051581283}
+  - component: {fileID: 7987171593154498476}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -127,7 +111,7 @@ Transform:
   m_GameObject: {fileID: 6681698131001076245}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4194611680560593146}
@@ -146,3 +130,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f686e00e22e4bd444ad48be276a5c6ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!70 &7987171593154498476
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6681698131001076245}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.011355491, y: 0.007272392}
+  m_Size: {x: 0.6627446, y: 0.28544146}
+  m_Direction: 1

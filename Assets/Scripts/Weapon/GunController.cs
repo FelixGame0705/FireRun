@@ -1,17 +1,29 @@
 using DG.Tweening;
+using GameCrewUtils;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class GunController : WeaponBase
 {
     [SerializeField] private Transform _firePoint;
+
+
+    protected override void Update()
+    {
+        base.Update();
+        Flip();
+        //AttackMachanism(TargetAttack);
+    }
 
     public void SpawnBullet()
     {
         GameObject bullet = GamePlayController.Instance.GetBulletPool().GetObjectFromPool();
         bullet.transform.position = _firePoint.position;
         bullet.GetComponent<Bullet>().SetUp(TargetAttack.position - _firePoint.position);
+        bullet.GetComponent<Bullet>().SetDamage(1);
         //ReturnBulletToPool(bullet);
     }
 
@@ -34,29 +46,24 @@ public class GunController : WeaponBase
     {
         isAttack = false;
         SetStateAttacking(ATTACK_STAGE.DURATION, ATTACK_STAGE.FINISHED);
-        yield return new WaitForSecondsRealtime(3f);
+        yield return new WaitForSecondsRealtime(WeaponConfigSetting.SpeedAttack);
         SpawnBullet();
-        
-        //TargetAttack.GetComponent<Enemy>().TakeDamage(1);
-        //DamageEnemy();
         base.PlayerAttackStage = ATTACK_STAGE.FINISHED;
         isAttack = true;
     }
 
-    public override void AttackMachanism(Transform target)
+    override public void AttackMachanism(Transform target)
     {
         switch (base.PlayerAttackStage)
         {
             case ATTACK_STAGE.START:
-                if (CanPerformAttackState())
+                if (CanPerformAttackState() && target.gameObject.active == true)
                 {
-                    Debug.Log("Gun Start");
                     SetTargetForAttack(target);
-                    Flip();
+                    //Flip();
                     if (!CheckNullTarget())
                     {
                         WeaponAnimator.enabled = false;
-                        //MoveToEnemy(TargetAttack);
                         SetStateAttacking(ATTACK_STAGE.START, ATTACK_STAGE.DURATION);
                         base.PlayerAttackStage = ATTACK_STAGE.DURATION;
                     }

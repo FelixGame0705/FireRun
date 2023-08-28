@@ -13,10 +13,10 @@ public class WeaponSystem : MonoBehaviour
         {
             Debug.Log(weapons[i].CanPerformAttack());
             weapons[i].SetTargetForAttack(target);
-            if ((isCanAttack && weapons[i].CanPerformAttackState()) || weapons[i].CheckCurrentStateActive(ATTACK_STAGE.START) == false)
-            {
-                weapons[i].AttackMachanism(target);
-            }
+            //if ((isCanAttack && weapons[i].CanPerformAttackState()) || weapons[i].CheckCurrentStateActive(ATTACK_STAGE.START) == false)
+            //{
+            //    weapons[i].AttackMachanism(target);
+            //}
         }
     }
 

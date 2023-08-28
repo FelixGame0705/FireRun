@@ -1,3 +1,4 @@
+using GameCrewUtils;
 using UnityEngine;
 
 public class WeaponBase : MonoBehaviour
@@ -5,7 +6,6 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] protected Collider2D ColliderWeapon;
     [SerializeField] protected WeaponConfig WeaponConfigSetting;
     [SerializeField] protected Transform TargetAttack;
-    [SerializeField] protected Transform Parent;
     [SerializeField] protected Animator WeaponAnimator;
     [SerializeField] protected GameObject Model;
     [SerializeField] protected GameObject Body;
@@ -16,23 +16,25 @@ public class WeaponBase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Parent = transform.parent;
         WeaponAnimator.runtimeAnimatorController = WeaponConfigSetting.AnimatorWeapon;
         IsStates[0] = true;
     }
 
     // Update is called once per frame
-    protected void Update()
+    virtual protected void Update()
     {
         if (IsStates[(int)ATTACK_STAGE.DURATION] != true)
         {
             Rotate();
         }
-        if (CheckCurrentStateActive(ATTACK_STAGE.START)) 
+        if (CheckCurrentStateActive(ATTACK_STAGE.START))
         {
             Debug.Log(RotateDirectionY);
             Flip();
         }
+
+        if(TargetAttack != null)
+        AttackMachanism(TargetAttack);
 
     }
 
@@ -65,6 +67,8 @@ public class WeaponBase : MonoBehaviour
     public void Flip()
     {
         if (CheckNullTarget()) return;
+        //Utils.Instance.FlipObject(Model.transform, TargetAttack.transform, "X");
+        //Utils.Instance.FlipObject(Model.transform, TargetAttack.transform, "Y");
         Model.transform.localScale = transform.position.x > TargetAttack.position.x ? new Vector3(-1, 1, 1) : new Vector3(1, 1, 1);
         CheckDirectionRotate();
     }
@@ -79,6 +83,11 @@ public class WeaponBase : MonoBehaviour
     public float GetRangeWeapon()
     {
         return WeaponConfigSetting.RangeEnemyAttack;
+    }
+
+    public void ResetTarget()
+    {
+        TargetAttack = null;
     }
 
     public void SetTargetForAttack(Transform target)
@@ -100,6 +109,11 @@ public class WeaponBase : MonoBehaviour
     {
         IsStates[(int)currentState] = false;
         IsStates[(int)stateContinue] = true;
+    }
+
+    public void SetStateAttacking(ATTACK_STAGE currentState, bool isActive)
+    {
+        IsStates[(int)currentState] = isActive;
     }
 
     virtual public bool CanPerformAttackState()

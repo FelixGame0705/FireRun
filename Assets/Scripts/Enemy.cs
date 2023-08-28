@@ -8,8 +8,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EnemySetting _enemyConfig;
     [SerializeField] private Collider2D _collider2D;
     [SerializeField] private GameObject _targetPlayer;
-    [SerializeField] private Animator _animator;
+    [SerializeField] public Animator _animator;
     [SerializeField] private int _currentHealth;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
     private int _maxHealth;
     private Transform _playerUpDownController;
 
@@ -30,6 +31,10 @@ public class Enemy : MonoBehaviour
             AttackMechanism();
             MoveToPlayer();
             Flip();
+        }
+        if (isHurt)
+        {
+            StartCoroutine(DelayHurt());
         }
     }
 
@@ -120,5 +125,18 @@ public class Enemy : MonoBehaviour
                 break;
         }
     }
-    
+
+    public void Hurt()
+    {
+        _spriteRenderer.material.color = Color.red;
+    }
+
+    public bool isHurt = true;
+    public IEnumerator DelayHurt()
+    {
+        isHurt = false;
+        Hurt();
+        yield return new WaitForSeconds(1f);
+        _spriteRenderer.material.color = Color.white;
+    }
 }
