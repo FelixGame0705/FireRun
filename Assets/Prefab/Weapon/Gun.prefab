@@ -180,7 +180,6 @@ MonoBehaviour:
   ColliderWeapon: {fileID: 0}
   WeaponConfigSetting: {fileID: 11400000, guid: 6a81b1e38ab26234d80dc59468e67fd3, type: 2}
   TargetAttack: {fileID: 0}
-  Parent: {fileID: 0}
   WeaponAnimator: {fileID: 8155274126646536261}
   Model: {fileID: 9054654333709436468}
   Body: {fileID: 1238433522031880517}
@@ -188,6 +187,7 @@ MonoBehaviour:
   RotateDirectionX: 1
   RotateDirectionY: 1
   _firePoint: {fileID: 4522440188625845624}
+  _fireSprite: {fileID: 6549916846775481065}
 --- !u!1 &6201995429328090977
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 838774952517518518}
   - component: {fileID: 6549916846775481065}
   m_Layer: 7
-  m_Name: GameObject
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -213,8 +213,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6201995429328090977}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.88, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.562, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4522440188625845624}

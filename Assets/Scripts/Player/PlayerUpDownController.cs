@@ -129,7 +129,7 @@ public class PlayerUpDownController : MonoBehaviour
     {
         for(int i = 0; i < WeaponSystem.GetWeapons().Count; i++)
         {
-            WeaponSystem.ExcuteAttack(FindNearestEnemy(), CheckInRangeAttack(i));
+            WeaponSystem.ExcuteAttack(FindNearestEnemy(), gameObject.transform,CheckInRangeAttack(i));
         }
     }
 }

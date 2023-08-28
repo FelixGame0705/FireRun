@@ -57,6 +57,12 @@ public class WeaponConfig : ScriptableObject
         get { return angularVelocityReturn; }
         set { angularVelocityReturn = value; }
     }
+
+    public DamageTypeDictionary DamageTypes
+    {
+        set { damageTypes = value; }
+        get { return damageTypes; }
+    }
     [Tooltip("Range for finding enemy to attack")]    
     
     [SerializeField] private float rangeFindEnemyAttack = 3f;
@@ -75,4 +81,6 @@ public class WeaponConfig : ScriptableObject
     [SerializeField] private float speedMoveReturn = 0.5f;
     [Tooltip("Angular velocity to original angle")]
     [SerializeField] private float angularVelocityReturn = 5f;
+    [Tooltip("Damage types and value")]
+    [SerializeField] private DamageTypeDictionary damageTypes;
 }

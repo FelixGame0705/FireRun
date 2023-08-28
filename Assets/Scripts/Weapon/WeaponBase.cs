@@ -11,6 +11,7 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] protected GameObject Body;
 
     public ATTACK_STAGE PlayerAttackStage;
+    protected Transform Player;
     protected bool[] IsStates = new bool[4];
 
     // Start is called before the first frame update
@@ -93,6 +94,11 @@ public class WeaponBase : MonoBehaviour
     public void SetTargetForAttack(Transform target)
     {
         this.TargetAttack = target;
+    }
+
+    public void SetPlayerPosition(Transform player)
+    {
+        this.Player = player;
     }
 
     virtual public bool CanPerformAttack()

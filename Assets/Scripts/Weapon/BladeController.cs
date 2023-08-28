@@ -7,10 +7,10 @@ public class BladeController : WeaponBase
     protected override void Update()
     {
         base.Update();
-        if (TargetAttack.gameObject.active == false)
-        {
-            transform.DOLocalMove(Vector3.zero, WeaponConfigSetting.SpeedMoveToReturn);
-        }
+        //if (TargetAttack.gameObject.active == false)
+        //{
+        //    transform.DOLocalMove(Vector3.zero, WeaponConfigSetting.SpeedMoveToReturn);
+        //}
     }
     private void MoveToEnemy(Transform target)
     {
@@ -68,7 +68,7 @@ public class BladeController : WeaponBase
             case ATTACK_STAGE.START:
                 if (CanPerformAttackState())
                 {
-                    if (Vector2.Distance(transform.position, target.position) <= WeaponConfigSetting.RangeEnemyAttack)
+                    if (Vector2.Distance(Player.position, target.position) <= WeaponConfigSetting.RangeEnemyAttack)
                     {
 
                         SetTargetForAttack(target);

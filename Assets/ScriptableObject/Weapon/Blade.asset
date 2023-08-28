@@ -24,3 +24,6 @@ MonoBehaviour:
   speedMoveToTarget: 100
   speedMoveReturn: 0.5
   angularVelocityReturn: 5
+  damageTypes:
+    keys: 02000000
+    values: 0a000000

@@ -9,6 +9,7 @@ using static UnityEngine.GraphicsBuffer;
 public class GunController : WeaponBase
 {
     [SerializeField] private Transform _firePoint;
+    [SerializeField] private SpriteRenderer _fireSprite;
 
 
     protected override void Update()
@@ -48,6 +49,7 @@ public class GunController : WeaponBase
         SetStateAttacking(ATTACK_STAGE.DURATION, ATTACK_STAGE.FINISHED);
         yield return new WaitForSecondsRealtime(WeaponConfigSetting.SpeedAttack);
         SpawnBullet();
+        _fireSprite.enabled = true;
         base.PlayerAttackStage = ATTACK_STAGE.FINISHED;
         isAttack = true;
     }
@@ -82,6 +84,7 @@ public class GunController : WeaponBase
             case ATTACK_STAGE.FINISHED:
                 if (CanPerformAttackState() && WeaponAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
                 {
+                    _fireSprite.enabled = false;
                     WeaponAnimator.Play("Idle");
                     SetStateAttacking(ATTACK_STAGE.FINISHED, ATTACK_STAGE.END);
                     base.PlayerAttackStage = ATTACK_STAGE.END;
