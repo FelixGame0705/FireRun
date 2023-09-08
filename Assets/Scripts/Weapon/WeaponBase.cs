@@ -68,8 +68,6 @@ public class WeaponBase : MonoBehaviour
     public void Flip()
     {
         if (CheckNullTarget()) return;
-        //Utils.Instance.FlipObject(Model.transform, TargetAttack.transform, "X");
-        //Utils.Instance.FlipObject(Model.transform, TargetAttack.transform, "Y");
         Model.transform.localScale = transform.position.x > TargetAttack.position.x ? new Vector3(-1, 1, 1) : new Vector3(1, 1, 1);
         CheckDirectionRotate();
     }

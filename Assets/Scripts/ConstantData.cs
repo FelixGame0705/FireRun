@@ -52,7 +52,9 @@ public enum STATE_MOVE_CHARACTER
 
 public enum STATE_OF_GAME
 {
+    START,
     PLAYING,
+    SHOPPING,
     END,
     PAUSE,
     NEXT_LEVEL
@@ -60,14 +62,30 @@ public enum STATE_OF_GAME
 
 public enum DAMAGE_TYPE
 {
+    MELEE,
+    RANGED,
     FIRE,
-    POISON,
-    PHYSIC,
-    MAD,
-    ICE
+    POISON
+}
+
+public enum ITEM_TYPE
+{
+    Weapon,
+    Costume,
+    Item
 }
 
 public enum ENEMY_TYPE
 {
     
+}
+
+public enum RARE_TYPE
+{
+    NORMAL,
+    BLUE,
+    VIOLET,
+    ORANGE,
+    RED
+
 }

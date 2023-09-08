@@ -17,18 +17,18 @@ public class BladeController : WeaponBase
         Body.transform.DOLocalMove(Vector3.zero, 1f);
         Vector3 newTarget = target.position + new Vector3(GetHalfSizeXColliderEnemy() * RotateDirectionX, GetHalfSizeYColliderEnemy() * RotateDirectionY, 0f);
         float distance = Vector3.Distance(newTarget, transform.position);
-        transform.DOMove(newTarget, distance / WeaponConfigSetting.SpeedMoveToTarget).OnComplete(()=>SetStateAttacking(ATTACK_STAGE.DURATION, true));
+        transform.DOMove(newTarget, distance / WeaponConfigSetting.SpeedMoveToTarget).OnComplete(() => SetStateAttacking(ATTACK_STAGE.DURATION, true));
         SetStateAttacking(ATTACK_STAGE.START, false);
     }
 
     public float GetHalfSizeXColliderEnemy()
     {
-        return TargetAttack.GetComponent<BoxCollider2D>().size.x/2;
+        return TargetAttack.GetComponent<BoxCollider2D>().size.x / 2;
     }
 
     public float GetHalfSizeYColliderEnemy()
     {
-        return TargetAttack.GetComponent<BoxCollider2D>().size.y/2;
+        return TargetAttack.GetComponent<BoxCollider2D>().size.y / 2;
     }
 
     private void DealWithDamageToEnemy()
@@ -47,6 +47,7 @@ public class BladeController : WeaponBase
     {
         WeaponAnimator.speed = 2f;
         WeaponAnimator.Play("Attack");
+        AudioManager.Instance.PlaySFX("Slash");
         yield return new WaitUntil(() => WeaponAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack"));
         SetStateAttacking(ATTACK_STAGE.DURATION, ATTACK_STAGE.FINISHED);
     }
@@ -82,7 +83,7 @@ public class BladeController : WeaponBase
                         }
                     }
                 }
-                
+
                 break;
             case ATTACK_STAGE.DURATION:
                 if (CanPerformAttackState())
@@ -104,11 +105,8 @@ public class BladeController : WeaponBase
                 }
                 break;
             case ATTACK_STAGE.END:
-                if (CanPerformAttackState())
-                {
-                    EndAttack();
-                    base.PlayerAttackStage = ATTACK_STAGE.START;
-                }
+                EndAttack();
+                base.PlayerAttackStage = ATTACK_STAGE.START;
                 break;
         }
     }

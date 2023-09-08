@@ -63,8 +63,15 @@ public class WeaponConfig : ScriptableObject
         set { damageTypes = value; }
         get { return damageTypes; }
     }
+
+    public WeaponSpriteType WeaponSprites
+    {
+        set { weaponSprites = value; }
+        get { return weaponSprites; }
+    }
+
+    [SerializeField] private WeaponSpriteType weaponSprites;
     [Tooltip("Range for finding enemy to attack")]    
-    
     [SerializeField] private float rangeFindEnemyAttack = 3f;
     [SerializeField] private float rangAttack = 2f;
     [Tooltip("Damage attack")]

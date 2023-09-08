@@ -8,11 +8,13 @@ public class PlayerUpDownController : MonoBehaviour
     protected float MoveY;
     
     protected float MoveSpeed = 6f;
-    protected float MaxHealth;
-    protected float HealingRate;
+    protected int MaxHealth;
+    protected float HpRegeneration;
     protected float Acceleration = 1.3f;
+    protected int CurrentHealth;
 
     protected Rigidbody2D RigidbodyPlayer;
+    [SerializeField] protected PlayerConfig PlayerUpDownConfig;
     [SerializeField] protected CapsuleCollider2D CapsuleColliderPlayer;
     [SerializeField] protected CircleCollider2D CircleColliderPlayer;
     [SerializeField] protected Animator AnimatorPlayer;
@@ -21,6 +23,7 @@ public class PlayerUpDownController : MonoBehaviour
     [SerializeField] private ContactFilter2D _contactFilter2D;
     [SerializeField] private LayerMask _layerAttack;
     [SerializeField] private GameObject _body;
+    [SerializeField] private GameObject _model;
 
     private Transform _nearestTransform;
     private float _nearestDistance;
@@ -28,6 +31,9 @@ public class PlayerUpDownController : MonoBehaviour
     {
         _contactFilter2D.SetLayerMask(_layerAttack);
         _nearestTransform = transform;
+        MoveSpeed = PlayerUpDownConfig.Speed;
+        MaxHealth = PlayerUpDownConfig.MaxHP;
+        CurrentHealth = MaxHealth;
     }
     protected void Update()
     {
@@ -73,7 +79,7 @@ public class PlayerUpDownController : MonoBehaviour
 
     private void Flip(bool isFlip)
     {
-        _body.transform.localScale = new Vector3(isFlip ? -1 : 1, 1, 1);
+        _model.transform.localScale = new Vector3(isFlip ? -1 : 1, 1, 1);
     }
 
     private void FindEnemy()
@@ -124,12 +130,21 @@ public class PlayerUpDownController : MonoBehaviour
         return false;
     }
 
-
     public void AttackEnemy()
     {
         for(int i = 0; i < WeaponSystem.GetWeapons().Count; i++)
         {
             WeaponSystem.ExcuteAttack(FindNearestEnemy(), gameObject.transform,CheckInRangeAttack(i));
         }
+    }
+
+    public void SetPlayerConfig(PlayerConfig playerConfig)
+    {
+        PlayerUpDownConfig = playerConfig;
+    }
+
+    public PlayerConfig GetPlayerConfig()
+    {
+           return PlayerUpDownConfig;
     }
 }

@@ -25,5 +25,5 @@ MonoBehaviour:
   speedMoveReturn: 0.5
   angularVelocityReturn: 5
   damageTypes:
-    keys: 00000000
-    values: 01000000
+    keys: 01000000020000000000000003000000
+    values: 0a000000010000000100000001000000

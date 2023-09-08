@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StateLife: 0
+  PlayerUpDownConfig: {fileID: 11400000, guid: d43eb58a3a9c7254bb02b5223c10c006, type: 2}
   CapsuleColliderPlayer: {fileID: 70576461785968608}
   CircleColliderPlayer: {fileID: 5817665188209010940}
   AnimatorPlayer: {fileID: 95910407471766630}
@@ -112,6 +113,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _body: {fileID: 1931383371771900}
+  _model: {fileID: 1448561438037956}
   WeaponSystem: {fileID: 2591348863065594170}
   IsInRangeAttack: 0
 --- !u!1 &1303578656667868
@@ -171,7 +173,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1339666819538942}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.13199997, y: -0.3106956, z: 0.1}
+  m_LocalPosition: {x: 0.10200119, y: -0.31369781, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -310,7 +312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1555567037157064}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.1275787, y: -0.3106956, z: 0.1}
+  m_LocalPosition: {x: -0.15757751, y: -0.31369781, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

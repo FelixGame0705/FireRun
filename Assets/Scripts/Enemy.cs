@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     private Transform _playerUpDownController;
 
     private ATTACK_STAGE _attackStage = ATTACK_STAGE.START;
+    private Dictionary<DAMAGE_TYPE, int> _damageTypes = new Dictionary<DAMAGE_TYPE, int>();
     // Start is called before the first frame update
     void Start()
     {
@@ -88,6 +89,24 @@ public class Enemy : MonoBehaviour
     {
         _currentHealth -= damage;
         if (_currentHealth < 0) GamePlayController.Instance.GetEnemiesPool().ReturnObjectToPool(gameObject);
+    }
+
+    public void TakeDamage(DAMAGE_TYPE damageType, int damage)
+    {
+        _damageTypes.Add(damageType, damage);
+    }
+
+    IEnumerator BurnDamage()
+    {
+        _currentHealth -= _damageTypes[DAMAGE_TYPE.FIRE];
+        yield return new WaitForSeconds(3f);
+        _damageTypes.Remove(DAMAGE_TYPE.FIRE);
+    }
+
+    IEnumerator PoisonDamage()
+    {
+        _currentHealth -= _damageTypes[DAMAGE_TYPE.POISON];
+        yield return new WaitForSeconds(3f);
     }
 
     public int GetCurrentHealth()

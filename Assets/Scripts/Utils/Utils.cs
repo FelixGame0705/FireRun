@@ -29,7 +29,5 @@ namespace GameCrewUtils
                 else objectFilp.localScale = new Vector3(1, 1, 1);
             }
         }
-
-
     }
 }

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad409db4f60a9ba4fadf34e7ceef8564, type: 3}
+  m_Name: Data
+  m_EditorClassIdentifier: 
+  _maxHP: 0
+  _hpRegeneration: 0
+  _lifeSteal: 0
+  _damageSum: 0
+  _critChance: 0
+  damageTypes:
+    keys: 00000000010000000200000003000000
+    values: dc000000780000007800000078000000
+  _rangedAttack: 0
+  _attackedSpeed: 72
+  _armor: 0
+  _speed: 0
+  _harvesting: 0

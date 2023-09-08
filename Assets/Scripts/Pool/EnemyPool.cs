@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class EnemyPool : ObjectPool
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private List<GameObject> _enemyPool;
 
-    // Update is called once per frame
-    void Update()
+    public GameObject GetEnemySpawn(int min, int max)
     {
-        
+        int random = Random.Range(min, max);
+        objectPrefab = _enemyPool[random];
+        return objectPrefab;
     }
 }

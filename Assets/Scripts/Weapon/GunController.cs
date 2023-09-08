@@ -45,10 +45,12 @@ public class GunController : WeaponBase
     bool isAttack = true;
     IEnumerator DelayAttack()
     {
-        isAttack = false;
+        CameraFollow.Instance.StartCameraShake();
         SetStateAttacking(ATTACK_STAGE.DURATION, ATTACK_STAGE.FINISHED);
         yield return new WaitForSecondsRealtime(WeaponConfigSetting.SpeedAttack);
+        AudioManager.Instance.PlaySFX("GunShot");
         SpawnBullet();
+        
         _fireSprite.enabled = true;
         base.PlayerAttackStage = ATTACK_STAGE.FINISHED;
         isAttack = true;
